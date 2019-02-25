@@ -1,11 +1,19 @@
 {
   "name": "react-rxjs-todo",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author": "Agustín Fiorenza",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/afiorenza/react-rxjs-todo"
+  },
   "dependencies": {
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
+    "react-scripts": "2.1.5",
+    "redux": "^4.0.1",
+    "redux-observable": "^1.0.0",
+    "rxjs": "^6.4.0"
   },
   "scripts": {
     "start": "react-scripts start",
