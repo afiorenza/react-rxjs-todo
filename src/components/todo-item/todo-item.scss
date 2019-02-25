@@ -1,5 +1,7 @@
 .todo-item {
   border-bottom: 1px solid lightgray;
+  display: flex;
+  flex-direction: row;
   padding: 10px 15px;
 
   &:last-child {
@@ -19,17 +21,18 @@
     cursor: pointer;
   }
 
+  &--todo-label {
+    width: 100%;
+  }
+
   &--archive-button {
     background-color: transparent;
     border: 0;
-    float: right;
   }
 
   &--text {
     display: inline-block;
     font-size: 16px;
-    margin-top: -1px;
     padding-left: 10px;
-    position: absolute;
   }
 }
