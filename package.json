@@ -8,6 +8,7 @@
     "url": "https://github.com/afiorenza/react-rxjs-todo"
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",

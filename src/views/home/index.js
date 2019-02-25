@@ -1,6 +1,9 @@
+import './home.scss';
+
 import React, { useState, useEffect } from 'react';
 import todosService, {
-  addTodo$
+  addTodo$,
+  toggleTodo$
 } from '../../service/todos';
 import {
   Header,
@@ -21,11 +24,12 @@ const Home = () => {
   }, [todosService]);
 
   return (
-    <div>
+    <div className='home'>
       <Header
         addTodo$={addTodo$} />
 
       <TodosList
+        toggleTodo$={toggleTodo$}
         todos={todos} />
     </div>
   );

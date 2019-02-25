@@ -1,0 +1,35 @@
+.todo-item {
+  border-bottom: 1px solid lightgray;
+  padding: 10px 15px;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  &_done {
+
+    .todo-item--text {
+      text-decoration: line-through;
+    }
+  }
+
+  &--archive-button,
+  &--toggle-checkbox,
+  &--todo-label {
+    cursor: pointer;
+  }
+
+  &--archive-button {
+    background-color: transparent;
+    border: 0;
+    float: right;
+  }
+
+  &--text {
+    display: inline-block;
+    font-size: 16px;
+    margin-top: -1px;
+    padding-left: 10px;
+    position: absolute;
+  }
+}

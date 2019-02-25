@@ -1,10 +1,14 @@
 .header {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 
   &--todo-input {
     border-bottom-left-radius: 3px;
     border-top-left-radius: 3px;
     border: 1px solid lightgray;
     padding: 6px;
+    width: 100%;
   }
 
   &--add-button {

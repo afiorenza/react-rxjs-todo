@@ -1,14 +1,26 @@
-import React from 'react';
+import './todos-list.scss';
 
-const TodosList = ({ todos }) => {
+import { TodoItem } from '../';
+import React from 'react';
+import { isEmpty } from 'lodash';
+
+const TodosList = ({ todos, toggleTodo$ }) => {
+
+  if (isEmpty(todos)) {
+    return null;
+  }
+
   return (
-    <div>
-      {todos.map(({ id, text }) =>
-        <li key={id}>
-          {text}
-        </li>
-      )}
-    </div>
+    <ul className='todos-list'>
+      {
+        todos.map(todo =>
+          <TodoItem
+            key={todo.id}
+            {...todo}
+            toggleTodo$={toggleTodo$} />
+        )
+      }
+    </ul>
   );
 }
 
