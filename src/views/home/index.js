@@ -3,7 +3,8 @@ import './home.scss';
 import React, { useState, useEffect } from 'react';
 import todosService, {
   addTodo$,
-  toggleTodo$
+  toggleTodo$,
+  archiveTodo$
 } from '../../service/todos';
 import {
   Header,
@@ -29,6 +30,7 @@ const Home = () => {
         addTodo$={addTodo$} />
 
       <TodosList
+        archiveTodo$={archiveTodo$}
         toggleTodo$={toggleTodo$}
         todos={todos} />
     </div>

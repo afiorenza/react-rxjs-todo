@@ -6,7 +6,7 @@ const todos = new BehaviorSubject([]);
 // Actions
 export const addTodo$ = new Subject();
 export const toggleTodo$ = new Subject();
-export const removeTodo$ = new Subject();
+export const archiveTodo$ = new Subject();
 
 addTodo$
   .subscribe(text =>
@@ -22,17 +22,22 @@ addTodo$
   );
 
 toggleTodo$
-  .subscribe(uid => {
-    const index = todos.value.findIndex(({ id }) => id === uid);
+  .subscribe(uid => update(uid, 'done'));
 
-    todos.next([
-      ...todos.value.slice(0, index),
-      {
-        ...todos.value[index],
-        done: !todos.value[index].done
-      },
-      ...todos.value.slice(index + 1)
-    ]);
-  });
+archiveTodo$
+  .subscribe(uid => update(uid, 'archived'));
+
+const update = (uid, key) => {
+  const index = todos.value.findIndex(({ id }) => id === uid);
+
+  todos.next([
+    ...todos.value.slice(0, index),
+    {
+      ...todos.value[index],
+      [key]: !todos.value[index][key]
+    },
+    ...todos.value.slice(index + 1)
+  ]);
+}
 
 export default todos;

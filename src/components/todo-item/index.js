@@ -3,9 +3,11 @@ import './todo-item.scss';
 import classNames from 'classnames';
 import React from 'react';
 
-const TodoItem = ({ text, done, id, toggleTodo$ }) => {
+const TodoItem = ({ text, done, id, toggleTodo$, archiveTodo$ }) => {
 
   const handleCheckboxClick = uid => toggleTodo$.next(uid);
+
+  const handleArchiveButtonClick = uid => archiveTodo$.next(uid);
 
   return (
     <li
@@ -28,7 +30,8 @@ const TodoItem = ({ text, done, id, toggleTodo$ }) => {
       </label>
 
       <button
-        className='todo-item--archive-button'>
+        className='todo-item--archive-button'
+        onClick={handleArchiveButtonClick.bind(this, id)}>
         <i className='fas fa-archive' />
       </button>
     </li>
