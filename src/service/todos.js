@@ -1,10 +1,24 @@
 import { BehaviorSubject, Subject } from 'rxjs';
+import { uniqueId } from 'lodash';
 
 const todos = new BehaviorSubject([]);
 
 // Actions
-const addTodo = new Subject();
-const toggleTodo = new Subject();
-const removeTodo = new Subject();
+export const addTodo$ = new Subject();
+export const toggleTodo$ = new Subject();
+export const removeTodo$ = new Subject();
+
+addTodo$
+  .subscribe(text =>
+    todos.next([
+      ...todos.value,
+      {
+        id: uniqueId(),
+        archive: false,
+        visible: false,
+        text
+      }
+    ])
+  );
 
 export default todos;

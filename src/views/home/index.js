@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import todosService from '../../service/todos';
+import todosService, {
+  addTodo$
+} from '../../service/todos';
 import {
   Header,
   TodosList
@@ -10,19 +12,18 @@ const Home = () => {
 
   useEffect(() => {
     todosService.subscribe(nextTodos => {
-      if (nextTodos.length) {
-        updateTodos(nextTodos);
-      }
+      updateTodos(nextTodos);
     });
 
     return () => {
       todosService.unsubscribe();
     };
-  });
+  }, [todosService]);
 
   return (
     <div>
-      <Header />
+      <Header
+        addTodo$={addTodo$} />
 
       <TodosList
         todos={todos} />

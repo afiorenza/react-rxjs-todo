@@ -1,9 +1,13 @@
 import React from 'react';
 
-const TodosList = () => {
+const TodosList = ({ todos }) => {
   return (
     <div>
-      Todo list
+      {todos.map(({ id, text }) =>
+        <li key={id}>
+          {text}
+        </li>
+      )}
     </div>
   );
 }
