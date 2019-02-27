@@ -6,7 +6,7 @@ import { filter, pluck, merge } from 'rxjs/operators';
 
 const ENTER_KEY_CODE = 13;
 
-const Header = ({ addTodo$ }) => {
+const Header = ({ addTodo$, updateFilter }) => {
   const [todoInputValue, updateTodoInputValue] = useState('');
 
   const handleInputChange$ = new Subject();
@@ -39,18 +39,38 @@ const Header = ({ addTodo$ }) => {
 
   return (
     <div className='header'>
-      <input
-        className='header--todo-input'
-        onKeyUp={handleInputKeyUp}
-        onChange={handleInputChange}
-        value={todoInputValue}
-        type='text' />
+      <div className='header--row'>
+        <input
+          className='header--todo-input'
+          onKeyUp={handleInputKeyUp}
+          onChange={handleInputChange}
+          value={todoInputValue}
+          type='text' />
 
-      <button
-        className='header--add-button'
-        onClick={addTodoButtonClick}>
-        Add
-      </button>
+        <button
+          className='header--add-button'
+          onClick={addTodoButtonClick}>
+          Add
+        </button>
+      </div>
+
+      <div className='header--filters header--row'>
+        <label>
+          <input
+            type='checkbox'
+            onChange={() => updateFilter('archived')} />
+
+          <span>Archived</span>
+        </label>
+
+        <label>
+          <input
+            type='checkbox'
+            onChange={() => updateFilter('done')} />
+
+          <span>Done</span>
+        </label>
+      </div>
     </div>
   );
 }

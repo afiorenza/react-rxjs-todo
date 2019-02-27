@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import todosService, {
   addTodo$,
   toggleTodo$,
-  archiveTodo$
+  archiveTodo$,
+  filter$
 } from '../../service/todos';
 import {
   Header,
@@ -13,24 +14,38 @@ import {
 
 const Home = () => {
   const [todos, updateTodos] = useState([]);
+  const [filters, updateFilters] = useState({});
 
   useEffect(() => {
-    todosService.subscribe(nextTodos => {
-      updateTodos(nextTodos);
-    });
+    todosService
+      .subscribe(nextTodos => updateTodos(nextTodos));
+
+    filter$
+      .subscribe(nextFilters => updateFilters(nextFilters));
 
     return () => {
       todosService.unsubscribe();
+      filter$.unsubscribe();
     };
-  }, [todosService]);
+  }, [todosService, filter$]);
+
+  const updateFilter = key => {
+    filter$.next({
+      ...filters,
+      [key]: !filters[key]
+    });
+  };
 
   return (
     <div className='home'>
       <Header
-        addTodo$={addTodo$} />
+        addTodo$={addTodo$}
+        filters={filters}
+        updateFilter={updateFilter} />
 
       <TodosList
         archiveTodo$={archiveTodo$}
+        filters={filters}
         toggleTodo$={toggleTodo$}
         todos={todos} />
     </div>

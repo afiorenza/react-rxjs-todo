@@ -1,10 +1,10 @@
 import './todos-list.scss';
 
+import { isEmpty } from 'lodash';
 import { TodoItem } from '../';
 import React from 'react';
-import { isEmpty } from 'lodash';
 
-const TodosList = ({ todos, toggleTodo$, archiveTodo$ }) => {
+const TodosList = ({ todos, filters, toggleTodo$, archiveTodo$ }) => {
 
   if (isEmpty(todos)) {
     return null;
@@ -14,7 +14,8 @@ const TodosList = ({ todos, toggleTodo$, archiveTodo$ }) => {
     <ul className='todos-list'>
       {
         todos
-          .filter(({ archived }) => !archived)
+          .filter(({ archived }) => archived === filters.archived)
+          .filter(({ done }) => done === filters.done)
           .map(todo =>
             <TodoItem
               key={todo.id}

@@ -8,6 +8,12 @@ export const addTodo$ = new Subject();
 export const toggleTodo$ = new Subject();
 export const archiveTodo$ = new Subject();
 
+// Filters
+export const filter$ = new BehaviorSubject({
+  archived: false,
+  done: false
+});
+
 addTodo$
   .subscribe(text =>
     todos.next([
@@ -38,6 +44,6 @@ const update = (uid, key) => {
     },
     ...todos.value.slice(index + 1)
   ]);
-}
+};
 
 export default todos;
